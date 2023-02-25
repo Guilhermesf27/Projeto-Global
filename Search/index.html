@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="has-background-white-bis">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digimon</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<style>
+    
+</style>
+<body>
+    <div id="menu">
+        <ul>
+            <li><a href="#">Procure pelo seu Digimon</a>
+            </li></ul>
+    </div>
+    <section id="app" class="section">
+        <div class="container">
+            <div class="box">
+                <div class="content__wrapper">
+                    <div>
+                        <div class="field">
+                            <label class="label">Busque pelo nome do Digimon</label>
+                            <div class="control">
+                                <form @submit.prevent="searchName">
+                                    <div class="field has-addons">
+                                        <p class="control">
+                                            <a class="button is-static">
+                                            </a>
+                                        </p>
+                                        <p class="control">
+                                            <input class="input" type="text" placeholder="Nome" v-model="name">
+                                        </p>
+                                        <p class="control">
+                                            <button class="button is-link">Buscar</button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Busque pelo level do Digimon</label>
+                            <div class="control">
+                                <form @submit.prevent="searchLevel">
+                                    <div class="field has-addons">
+                                        <p class="control">
+                                            <a class="button is-static">
+                                            </a>
+                                        </p>
+                                        <p class="control">
+                                            <input class="input" type="text" placeholder="Level" v-model="level">
+                                        </p>
+                                        <p class="control">
+                                            <button class="button is-link">Buscar</button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <article class="media" v-for="(digimon, index) in response">
+                            <figure class="media-left">
+                                <p class="image is-128x128">
+                                    <img :src="digimon.img">
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong>{{ digimon.name }}</strong> <br><small>{{ digimon.level }}</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                        <div v-if="error.isVisible" class="notification is-warning">
+                        
+                                <button class="delete" @click="error.isVisible = false">Este Digimon não está na lista!</button>
+                                {{ error.message }}
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="digimon.js"></script>
+</body></html>
